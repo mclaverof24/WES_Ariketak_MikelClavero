@@ -46,7 +46,7 @@
 
     // 'do' zatia gutxienez behin exekutatzen da, baldintza egiaztatu aurretik
     do {
-        echo $zenbakia . ($zenbakia < 30 ? "  " : "");
+        echo $zenbakia ." ";
         $zenbakia += 3;
     } while ($zenbakia <= 30);
     ?>
