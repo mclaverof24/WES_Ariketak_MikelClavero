@@ -3,13 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Ariketa 3</title>
-    <style>
-        /* Zerrenden puntu beltzak kentzeko CSS estiloa */
-        ul {
-            list-style-type: none;
-            padding-left: 0px;
-        }
-    </style>
+
 </head>
 <body>
 
@@ -57,12 +51,10 @@
     // Herrialdeen izenekin osatutako zerrenda (array) bat sortu
     $herrialdeak = array("EH", "Frantzia", "Alemania", "Italia");
 
-    echo "<ul>";
     // 'foreach'-ek zerrendako elementu bakoitza hartu eta $herrialdea aldagaian jartzen du banan-banan
     foreach ($herrialdeak as $herrialdea) {
-        echo "<li>" . $herrialdea . "</li>"; // Zerrendako elementu moduan inprimatu
+        echo "$herrialdea <br>" ; // Zerrendako elementu moduan inprimatu
     }
-    echo "</ul>";
     ?>
 
 
