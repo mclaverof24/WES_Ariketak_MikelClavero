@@ -7,6 +7,7 @@
         /* Zerrenden puntu beltzak kentzeko CSS estiloa */
         ul {
             list-style-type: none;
+            padding-left: 0px;
         }
     </style>
 </head>
