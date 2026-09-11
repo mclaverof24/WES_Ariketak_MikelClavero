@@ -60,35 +60,36 @@
 
     <h2>Ariketa 3.5</h2>
     <?php
-    $kontagailua = 0;   // Aurkitutako zenbaki lehenen kopurua gorde
-    $lehenak = array(); // Zenbaki lehen guztiak gordetzeko zerrenda hutsa
+    // Aurkitutako zenbaki lehenen kopurua zenbatzeko aldagai bat hasieratu
+    $hainbat = 0;
 
-    // 1etik 100era arteko zenbaki guztiak aztertu
-    for ($n = 1; $n <= 100; $n++) {
-        if ($n <= 1) {
-            continue;
-        }
+    // Begizta (bucle) nagusia: 2tik 100era arteko zenbaki guztiak banan-banan aztertuko ditu
+    for ($zenb = 2; $zenb <= 100; $zenb++) {
+        
+        // Hasieran suposatzen dugu aztertzen ari garen zenbakia ($zenb) LEHENA dela
+        $lehen = true;
 
-        $isPrimo = true;
-
-        // $n-ren zatigarritasuna egiaztatu 2tik bere erro karratura arte
-        for ($k = 2; $k * $k <= $n; $k++) {
-            if ($n % $k == 0) { // Zatiketaren hondarra 0 bada (zatigarria da)
-                $isPrimo = false;
-                break;            // Begiztatik irten (ez da gehiago egiaztatu behar)
+        // Bigarren begizta: $zenb hori ea beste zenbakiren batekin zatigarria den egiaztatuko du
+        // (2tik hasi eta aztertzen ari garen zenbakia baino bat gutxiagora arte)
+        for ($i = 2; $i < $zenb; $i++) {
+            
+            // Onarpen-baldintza: hondarra (%) 0 bada, zatiketa zehatza da (zatigarria da)
+            if ($zenb % $i == 0) {
+                // Ez denez lehena, 'false' jarri eta barruko begiztatik irten (ez du gehiago bilatu behar)
+                $lehen = false;
+                break;
             }
         }
 
-        // $isPrimo EGIA izaten jarraitzen badu, zerrendan gorde
-        if ($isPrimo) {
-            $lehenak[] = $n; // Zerrendaren amaieran zenbakia gehitu
-            $kontagailua++;  // Kontagailua inkrementatu
+        // '$lehen' aldagaiak 'true' izaten jarraitzen badu, zenbakia lehena dela esan nahi du
+        if ($lehen) {
+            echo $zenb . " "; // Zenbakia eta zuriune bat inprimatu
+            $hainbat++;       // Aurkitutako zenbaki lehenen kontagailuari 1 gehitu
         }
     }
 
-    // implode() funtzioak zerrendako elementuak komaz berdin lotzen ditu testu bakarrean
-    echo implode(", ", $lehenak) . "</p>";
-    echo "<p>Kopurua: " . $kontagailua;
+    echo "<br>";
+    echo "Kopurua: " . $hainbat;
     ?>
 
 </body>
