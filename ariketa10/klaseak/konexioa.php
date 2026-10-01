@@ -6,13 +6,11 @@ class Konexioa
 {
     private static ?PDO $pdo = null;
 
-    // Cambia estos datos según tu entorno
     private const HOST = 'localhost';
     private const DB   = 'hackaton';
     private const USER = 'mclaverof24';
     private const PASS = 'root';
 
-    /** Devuelve siempre la misma conexión (patrón singleton) */
     public static function lortu(): PDO
     {
         if (self::$pdo === null) {

@@ -6,7 +6,6 @@ require_once __DIR__ . '/konexioa.php';
  */
 class Partaidea
 {
-    /** Miembros de un equipo */
     public static function taldekoak(int $taldeaId): array
     {
         $st = Konexioa::lortu()->prepare('SELECT * FROM partaideak WHERE taldea_id = ? ORDER BY id');

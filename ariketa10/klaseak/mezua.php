@@ -9,7 +9,6 @@ class Mezua
         $_SESSION['mezua'] = ['testua' => $testua, 'errorea' => $errorea];
     }
 
-    /** Muestra el mensaje una sola vez */
     public static function erakutsi(): void
     {
         if (!isset($_SESSION['mezua'])) {

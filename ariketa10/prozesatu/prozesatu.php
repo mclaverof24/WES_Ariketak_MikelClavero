@@ -11,7 +11,7 @@ require_once __DIR__ . '/../klaseak/mezua.php';
 
 Gogokoena::hasieratu();
 
-// Solo aceptamos peticiones POST
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: ../index.php');
     exit;

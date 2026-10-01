@@ -6,13 +6,11 @@ require_once __DIR__ . '/konexioa.php';
  */
 class Taldea
 {
-    /** Lista de todos los equipos */
     public static function guztiak(): array
     {
         return Konexioa::lortu()->query('SELECT * FROM taldeak ORDER BY id')->fetchAll();
     }
 
-    /** Un equipo por su ID (o null si no existe) */
     public static function bilatu(int $id): ?array
     {
         $st = Konexioa::lortu()->prepare('SELECT * FROM taldeak WHERE id = ?');
