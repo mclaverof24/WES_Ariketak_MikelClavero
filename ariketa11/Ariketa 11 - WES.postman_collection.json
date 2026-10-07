@@ -1,0 +1,152 @@
+{
+  "info": {
+    "_postman_id": "1789f5a0-251c-455a-a3e3-c4a9a1ced21d",
+    "name": "Ariketa 11 / WES",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51440242",
+    "_collection_link": "https://go.postman.co/collection/51440242-1789f5a0-251c-455a-a3e3-c4a9a1ced21d?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Talde Guztiak",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost/wes/e1proiektuak/ariketa11/taldeak-api.php",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "wes",
+            "e1proiektuak",
+            "ariketa11",
+            "taldeak-api.php"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Taldea eta Partaideak",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost/wes/e1proiektuak/ariketa11/taldeak-api.php?id=3",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "wes",
+            "e1proiektuak",
+            "ariketa11",
+            "taldeak-api.php"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "3"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Taldea sortu",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"izena\": \"Athletic\", \"puntuak\": 10}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost/wes/e1proiektuak/ariketa11/taldeak-api.php",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "wes",
+            "e1proiektuak",
+            "ariketa11",
+            "taldeak-api.php"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Puntuak aldatu",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"puntuak\": 25}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost/wes/e1proiektuak/ariketa11/taldeak-api.php?id=4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "wes",
+            "e1proiektuak",
+            "ariketa11",
+            "taldeak-api.php"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "4"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Taldea Ezabatu",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost/wes/e1proiektuak/ariketa11/taldeak-api.php?id=4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "wes",
+            "e1proiektuak",
+            "ariketa11",
+            "taldeak-api.php"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "4"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
