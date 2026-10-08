@@ -29,7 +29,7 @@ class Gogokoena
         }
         $talde = Taldea::bilatu((int) $_SESSION['gogokoena']);
         if ($talde) {
-            echo '<p>Zure talde favoritoa: ' . htmlspecialchars($talde['izena']) . '</p>';
+            echo '<p>Zure talde gogokoena: ' . htmlspecialchars($talde['izena']) . '</p>';
         }
     }
 }
