@@ -1,0 +1,2410 @@
+{
+  "info": {
+    "_postman_id": "51c0f349-c38c-4b53-b728-088de0faed11",
+    "name": "e1inbentarioa - API (por tablas)",
+    "description": "CRUD completo agrupado por tabla. Ejecuta en orden (carpeta por carpeta) sobre una BD recién importada + setup.php. Variable 'base' = URL de tu carpeta.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51440242",
+    "_collection_link": "https://go.postman.co/collection/51440242-51c0f349-c38c-4b53-b728-088de0faed11?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "0. Auth",
+      "item": [
+        {
+          "name": "Login admin",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"admin\",\n  \"pasahitza\": \"MiClave1234\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/auth.php?action=login",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "auth.php"
+              ],
+              "query": [
+                {
+                  "key": "action",
+                  "value": "login"
+                }
+              ]
+            },
+            "description": "Cambia usuario/contraseña por los que usaste en setup.php"
+          },
+          "response": []
+        },
+        {
+          "name": "Me",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/auth.php?action=me",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "auth.php"
+              ],
+              "query": [
+                {
+                  "key": "action",
+                  "value": "me"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login incorrecto",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 401', function () { pm.response.to.have.status(401); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"admin\",\n  \"pasahitza\": \"mala\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/auth.php?action=login",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "auth.php"
+              ],
+              "query": [
+                {
+                  "key": "action",
+                  "value": "login"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/auth.php?action=logout",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "auth.php"
+              ],
+              "query": [
+                {
+                  "key": "action",
+                  "value": "logout"
+                }
+              ]
+            },
+            "description": "Después de esto vuelve a hacer login admin"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "1. erabiltzaileak",
+      "item": [
+        {
+          "name": "Listar usuarios",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/erabiltzaileak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "erabiltzaileak.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ver usuario 1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/erabiltzaileak.php?id=1",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "erabiltzaileak.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Alta usuario maria (user)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 201', function () { pm.response.to.have.status(201); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"maria\",\n  \"pasahitza\": \"ClaveSegura1\",\n  \"rol\": \"user\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/erabiltzaileak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "erabiltzaileak.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar rol usuario 2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rol\": \"admin\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/erabiltzaileak.php?id=2",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "erabiltzaileak.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Devolver a user",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rol\": \"user\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/erabiltzaileak.php?id=2",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "erabiltzaileak.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Borrar usuario 2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/erabiltzaileak.php?id=2",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "erabiltzaileak.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "2"
+                }
+              ]
+            },
+            "description": "Dará 409 si maria ya hizo movimientos"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "2. kategoriak",
+      "item": [
+        {
+          "name": "Listar categorías",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/kategoriak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "kategoriak.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ver categoría 1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/kategoriak.php?id=1",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "kategoriak.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear categoría",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 201', function () { pm.response.to.have.status(201); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"izena\": \"Monitores\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/kategoriak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "kategoriak.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar categoría 5",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"izena\": \"Pantallas\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/kategoriak.php?id=5",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "kategoriak.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Borrar categoría 5",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/kategoriak.php?id=5",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "kategoriak.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "3. gelak",
+      "item": [
+        {
+          "name": "Listar aulas",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/gelak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gelak.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ver aula 3",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/gelak.php?id=3",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gelak.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear aula",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 201', function () { pm.response.to.have.status(201); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"izena\": \"Aula 3WAG2\",\n  \"taldea\": \"3WAG2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/gelak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gelak.php"
+              ]
+            },
+            "description": "Con setup.php: Almacén=1, Departamento=2, esta será la 3"
+          },
+          "response": []
+        },
+        {
+          "name": "Editar aula 3",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"taldea\": \"3WAG3\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/gelak.php?id=3",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gelak.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Borrar aula 3",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/gelak.php?id=3",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gelak.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "3"
+                }
+              ]
+            },
+            "description": "Dará 409 si hay equipos dentro"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "4. baliabideak",
+      "item": [
+        {
+          "name": "Listar recursos",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/baliabideak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "baliabideak.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ver recurso 1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/baliabideak.php?id=1",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "baliabideak.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear recurso (modelo)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 201', function () { pm.response.to.have.status(201); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"kategoriaId\": 1,\n  \"izena\": \"Portátil Lenovo ThinkPad\",\n  \"deskribapena\": \"Portátil de aula\",\n  \"marka\": \"Lenovo\",\n  \"modeloa\": \"E14\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/baliabideak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "baliabideak.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar recurso 1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"modeloa\": \"E15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/baliabideak.php?id=1",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "baliabideak.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Borrar recurso 1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/baliabideak.php?id=1",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "baliabideak.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Dará 409 si hay equipos asociados"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "5. gailuak",
+      "item": [
+        {
+          "name": "Listar equipos",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/gailuak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gailuak.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ver equipo 1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/gailuak.php?id=1",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gailuak.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear equipo PC-001",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 201', function () { pm.response.to.have.status(201); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baliabideId\": 1,\n  \"etiketa\": \"PC-001\",\n  \"erosketaData\": \"2026-09-15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/gailuak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gailuak.php"
+              ]
+            },
+            "description": "Entra automáticamente en el Almacén"
+          },
+          "response": []
+        },
+        {
+          "name": "Crear equipo PC-002",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 201', function () { pm.response.to.have.status(201); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baliabideId\": 1,\n  \"etiketa\": \"PC-002\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/gailuak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gailuak.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar estado equipo 2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"egoera\": \"Matxuratua\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/gailuak.php?id=2",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gailuak.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Dar de baja equipo 2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"egoera\": \"Baja\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/gailuak.php?id=2",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gailuak.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "6. mugimenduak",
+      "item": [
+        {
+          "name": "Ubicaciones activas",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/mugimenduak.php?active=1",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "mugimenduak.php"
+              ],
+              "query": [
+                {
+                  "key": "active",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Historial equipo 1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/mugimenduak.php?gailuId=1",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "mugimenduak.php"
+              ],
+              "query": [
+                {
+                  "key": "gailuId",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ver movimiento 1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/mugimenduak.php?id=1",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "mugimenduak.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Mover PC-001 al aula 3",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 201', function () { pm.response.to.have.status(201); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gailuId\": 1,\n  \"gelaId\": 3\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/mugimenduak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "mugimenduak.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Mover PC-001 con fecha",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 201', function () { pm.response.to.have.status(201); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gailuId\": 1,\n  \"gelaId\": 2,\n  \"hasieraData\": \"2099-01-01\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/mugimenduak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "mugimenduak.php"
+              ]
+            },
+            "description": "Mueve al Departamento con fecha futura (útil para ver cierre de ubicación)"
+          },
+          "response": []
+        },
+        {
+          "name": "Corregir fechas movimiento 1 (admin)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"hasieraData\": \"2026-09-15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/mugimenduak.php?id=1",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "mugimenduak.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Borrar movimiento 1 (admin)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/mugimenduak.php?id=1",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "mugimenduak.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "7. stock",
+      "item": [
+        {
+          "name": "Stock",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/stock.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "stock.php"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "8. Rol user (haz login como maria antes)",
+      "item": [
+        {
+          "name": "Login maria",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"maria\",\n  \"pasahitza\": \"ClaveSegura1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/auth.php?action=login",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "auth.php"
+              ],
+              "query": [
+                {
+                  "key": "action",
+                  "value": "login"
+                }
+              ]
+            },
+            "description": "Necesita que exista maria (carpeta 1)"
+          },
+          "response": []
+        },
+        {
+          "name": "user: listar equipos (OK)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/gailuak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gailuak.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "user: mover equipo (OK)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 201', function () { pm.response.to.have.status(201); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gailuId\": 1,\n  \"gelaId\": 3,\n  \"hasieraData\": \"2099-03-01\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/mugimenduak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "mugimenduak.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "user: crear equipo (403)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 403', function () { pm.response.to.have.status(403); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baliabideId\": 1,\n  \"etiketa\": \"PC-777\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/gailuak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gailuak.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "user: alta usuario (403)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 403', function () { pm.response.to.have.status(403); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"otro\",\n  \"pasahitza\": \"ClaveSegura1\",\n  \"rol\": \"user\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/erabiltzaileak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "erabiltzaileak.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "user: borrar movimiento (403)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 403', function () { pm.response.to.have.status(403); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/mugimenduak.php?id=1",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "mugimenduak.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "9. Pruebas de error",
+      "item": [
+        {
+          "name": "Equipo sin etiqueta",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 422', function () { pm.response.to.have.status(422); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baliabideId\": 1,\n  \"etiketa\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/gailuak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gailuak.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Etiqueta duplicada",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 409', function () { pm.response.to.have.status(409); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baliabideId\": 1,\n  \"etiketa\": \"PC-001\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/gailuak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gailuak.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Estado no permitido",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 422', function () { pm.response.to.have.status(422); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baliabideId\": 1,\n  \"etiketa\": \"PC-900\",\n  \"egoera\": \"Roto\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/gailuak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gailuak.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Recurso inexistente",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 422', function () { pm.response.to.have.status(422); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baliabideId\": 999,\n  \"etiketa\": \"PC-901\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/gailuak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "gailuak.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Mover a la misma aula",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 409', function () { pm.response.to.have.status(409); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gailuId\": 1,\n  \"gelaId\": 2,\n  \"hasieraData\": \"2099-02-01\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/mugimenduak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "mugimenduak.php"
+              ]
+            },
+            "description": "Ejecuta antes 'Mover PC-001 con fecha'"
+          },
+          "response": []
+        },
+        {
+          "name": "Mover a aula inexistente",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 422', function () { pm.response.to.have.status(422); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gailuId\": 1,\n  \"gelaId\": 999\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/mugimenduak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "mugimenduak.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Fecha mal formada",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 422', function () { pm.response.to.have.status(422); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gailuId\": 1,\n  \"gelaId\": 3,\n  \"hasieraData\": \"15/09/2026\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/mugimenduak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "mugimenduak.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Borrar categoría con recursos",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 409', function () { pm.response.to.have.status(409); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/kategoriak.php?id=1",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "kategoriak.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Mover equipo de baja",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 422', function () { pm.response.to.have.status(422); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gailuId\": 2,\n  \"gelaId\": 3\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/mugimenduak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "mugimenduak.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Borrar mi propio usuario",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/erabiltzaileak.php?id=1",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "erabiltzaileak.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Contraseña corta",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 422', function () { pm.response.to.have.status(422); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"pepe\",\n  \"pasahitza\": \"123\",\n  \"rol\": \"user\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/erabiltzaileak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "erabiltzaileak.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Rol inválido",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 422', function () { pm.response.to.have.status(422); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"pepe\",\n  \"pasahitza\": \"ClaveSegura1\",\n  \"rol\": \"dios\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/erabiltzaileak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "erabiltzaileak.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Sin Content-Type (415)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 415', function () { pm.response.to.have.status(415); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"izena\":\"x\"}",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/kategoriak.php",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "kategoriak.php"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base",
+      "value": "http://localhost/wes/e1proiektuak/e1inbentarioa"
+    }
+  ]
+}
