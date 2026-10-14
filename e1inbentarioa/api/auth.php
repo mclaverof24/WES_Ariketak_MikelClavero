@@ -21,19 +21,15 @@ switch ($action) {
             json_error('Usuario y contraseña obligatorios', 422);
         }
 
-        $st = db()->prepare('SELECT id, username, pasahitza, rol FROM erabiltzaileak WHERE username = ?');
-        $st->execute([$username]);
-        $u = $st->fetch();
-
-        if (!$u || !password_verify($password, $u['pasahitza'])) {
-            usleep(300000); // frena un poco la fuerza bruta
+        $user = (new Erabiltzailea(db()))->authenticate($username, $password);
+        if ($user === null) {
             json_error('Credenciales incorrectas', 401);
         }
 
         start_session();
         session_regenerate_id(true);
-        $_SESSION['user'] = ['id' => (int)$u['id'], 'username' => $u['username'], 'rol' => $u['rol']];
-        json_out($_SESSION['user']);
+        $_SESSION['user'] = $user;
+        json_out($user);
 
     case 'logout':
         if ($method !== 'POST') {

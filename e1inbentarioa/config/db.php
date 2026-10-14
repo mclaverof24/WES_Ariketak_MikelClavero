@@ -10,6 +10,15 @@ const DB_PASS = 'root';
 // Nombre del aula donde se ubican por defecto los equipos nuevos
 const GELA_ALMAZENA = 'Almacén';
 
+// Orígenes del frontend autorizados a llamar a la API con cookies (CORS).
+// Si el frontend se sirve desde el mismo origen que la API, no hace falta CORS.
+const ALLOWED_ORIGINS = [
+    'http://localhost',
+    'http://localhost:5500',
+    'http://127.0.0.1:5500',
+    'https://www.taldeX.edu', // sustituye X por el número de tu grupo
+];
+
 function db(): PDO
 {
     static $pdo = null;

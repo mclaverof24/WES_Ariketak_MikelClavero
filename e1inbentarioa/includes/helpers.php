@@ -20,15 +20,6 @@ function json_error(string $message, int $code = 400, array $details = []): neve
     json_out($out, $code);
 }
 
-/** Deshace la transacción abierta (si la hay) y responde con error. */
-function abort_tx(PDO $pdo, string $message, int $code = 400, array $details = []): never
-{
-    if ($pdo->inTransaction()) {
-        $pdo->rollBack();
-    }
-    json_error($message, $code, $details);
-}
-
 /** Lee el cuerpo JSON. Exigir application/json dificulta ataques CSRF con formularios. */
 function body(): array
 {
@@ -56,6 +47,41 @@ function id_from_query(): ?int
     return $id;
 }
 
+/** Parámetro entero opcional de la query (?gailuId=3). null si no viene; 400 si no es válido. */
+function int_from_query(string $name): ?int
+{
+    if (!isset($_GET[$name])) {
+        return null;
+    }
+    $value = filter_var($_GET[$name], FILTER_VALIDATE_INT);
+    if ($value === false || $value < 1) {
+        json_error("$name no válido", 400);
+    }
+    return $value;
+}
+
+/** Exige que venga ?id= (para PUT y DELETE). */
+function need_id(?int $id): int
+{
+    if ($id === null) {
+        json_error('Falta el parámetro id', 400);
+    }
+    return $id;
+}
+
+/** Traduce errores de MySQL (claves foráneas, valores únicos) a respuestas HTTP comprensibles. */
+function db_error_response(PDOException $e): never
+{
+    $code = $e->errorInfo[1] ?? 0;
+    error_log($e->getMessage());
+    match ($code) {
+        1062    => json_error('Ya existe un registro con ese valor único (p. ej. etiqueta o nombre de usuario)', 409),
+        1451    => json_error('No se puede borrar: tiene registros relacionados', 409),
+        1452    => json_error('Referencia inexistente (clave foránea no válida)', 422),
+        default => json_error('Error de base de datos', 500),
+    };
+}
+
 // ---------- Sesión y roles ----------
 
 function start_session(): void
@@ -64,6 +90,7 @@ function start_session(): void
         session_set_cookie_params([
             'lifetime' => 0,
             'path'     => '/',
+            'secure'   => !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
             'httponly' => true,
             'samesite' => 'Lax',
         ]);
